@@ -30,6 +30,7 @@ def drawpixel(x, y, color, pixelsize ):
     
     turtle.tracer(0, 0)
     turtle.colormode(255)
+    turtle.penup()
     turtle.setpos(x*pixelsize,y*pixelsize)
     turtle.color(color)
     turtle.begin_fill()
@@ -98,7 +99,7 @@ def openImage():
          new_pixel_map[x, y] = orig_pixel_map[x, y]
          cpixel = new_pixel_map[x, y]
          all_pixels.append(cpixel)
-         drawpixel(x,y,cpixel,1)
+         drawpixel(x,y,cpixel,5)
               
          showimage()
          
@@ -127,14 +128,17 @@ canvas.pack()
 root.title ("Pixel Resizer")
 icon = PhotoImage(file="logo.png")
 
-# for x in range(30):
-#     for y in range(30):
+
+# for x in range(4):
+#     for y in range(5):
 #         color = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
-#         drawpixel(x,y,color,100)
+#         drawpixel(x,y,color,200)
 #         turtle.getscreen().getcanvas().postscript(file='outputname.ps')
 # showimage()
 openImage()
 turtle.getscreen().getcanvas().postscript(file='outputname.ps') 
+psimage=Image.open('outputname.ps')
+psimage.save('outputname.png')
 root.iconphoto(True,icon)
 root.mainloop()
 
