@@ -128,4 +128,5 @@ openFile.pack()
 
 root.title ("Pixel Resizer")
 icon = PhotoImage(file="logo.png")
+root.eval('tk::PlaceWindow . center')
 wn.mainloop()
