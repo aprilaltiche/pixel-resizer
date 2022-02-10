@@ -20,8 +20,10 @@ turtle = Turtle()
 turtle.speed("fastest")
 # turtle.down() # Lift pen so there is no streak across the window
 wn.title("Pixel Builder")
-
+if not os.path.isdir('images'):
+        os.mkdir('images')
 def mkDir():
+    
     if not os.path.isdir('resized_images'):
         os.mkdir('resized_images')
     if not os.path.isdir('ps'):
@@ -47,9 +49,8 @@ def buildImage():
         img.save(f'images/{filename}.png') 
         
     # for image in os.listdir('images'):
-        im = Image.open(f"images/{filename}{ext}").convert("RGB")            
-        
-        wn.reset()
+        im = Image.open(f"images/{filename}.png").convert("RGB")            
+        wn.reset() 
         resizePixel(im,pixelsize,filename)
         
     resizePixel(file,pixelsize,filename)
@@ -85,34 +86,41 @@ def resizePixel(file,pixelsize,filename):
     
     psimage=Image.open(f'ps/{filename}.ps')
     psimage.save(f'resized_images/{filename}.png')
-    
+    wn.hideturtle()
     # Update the window
     wn.update()
-    # wn.reset()  
-def buttonclick(x,y):
-    print("You clicked at this coordinate({0},{1})".format(x,y))
+    file.close()
+     
+# def buttonclick(x,y):
+#     print("You clicked at this coordinate({0},{1})".format(x,y))
     
-wn.onscreenclick(buttonclick,1)
-wn.listen()  # listen to incoming connections
+# wn.onscreenclick(buttonclick,1)
+# wn.listen()  # listen to incoming connections
 
 
 canvas = tk.Canvas(root, height=500, width=500, bg="white")
 canvas.pack()
 
-label1 = Label(canvas,bg="white", text= "Enter Image New size"+'\n')
+label1 = Label(canvas,bg="white", text= "Enter New Image size"+'\n')
 label1.pack()
 Entry1 = Entry(canvas)
-Entry1.insert(END, '0')
+Entry1.insert(END, '32')
 Entry1.pack()
 Entry1.focus_set() 
  
-label12 = Label(canvas,bg="white", text= "Enter New Pixel Size"+'\n')
-label12.pack()
+label2 = Label(canvas,bg="white", text= "Enter New Pixel Size"+'\n')
+label2.pack()
 Entry2 = Entry(canvas)
-Entry2.insert(END, '0')
+Entry2.insert(END, '12')
 Entry2.pack()
 Entry2.focus_set() 
 
+label3 = Label(canvas,bg="white", text= "Enter New Pixel Depth"+'\n')
+label3.pack()
+Entry3 = Entry(canvas)
+Entry3.insert(END, '8')
+Entry3.pack()
+Entry3.focus_set() 
 
 # buildImage()
 openFile = tk.Button(canvas,text="Open File", command=buildImage, pady="5", fg="white", bg="#263D42")
