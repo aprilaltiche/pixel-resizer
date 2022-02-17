@@ -127,6 +127,6 @@ openFile = tk.Button(canvas,text="Open File", command=buildImage, pady="5", fg="
 openFile.pack()
 
 root.title ("Pixel Resizer")
-icon = PhotoImage(file="logo.png")
+# icon = PhotoImage(file="logo.png")
 root.eval('tk::PlaceWindow . center')
 wn.mainloop()
